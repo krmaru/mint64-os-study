@@ -48,3 +48,33 @@
 * GitHub 원격 저장소 연결
 * 첫 push
 
+
+## 2026-09-03
+
+### 오늘 한 것
+
+* 로컬 `mint64-os-study` 저장소와 GitHub 원격 저장소 연결 확인
+* `git add`, `git commit`, `git push` 과정을 직접 수행
+* GitHub에서 `README.md`, `DEVLOG.md`, `GIT_GUIDE.md`가 정상적으로 올라간 것을 확인
+* Git/GitHub 사용법과 주요 명령어를 `GIT_GUIDE.md`에 정리
+* Git의 기본 작업 흐름을 실제로 연습
+
+### 이해한 것
+
+* `git add`는 다음 commit에 포함할 변경사항을 Staging Area에 올리는 과정이다.
+* `git commit`은 Staging된 변경사항을 로컬 Git History에 기록하는 과정이다.
+* `git push`는 로컬에서 만든 commit을 GitHub 원격 저장소로 전송하는 과정이다.
+* `git diff`는 아직 Staging하지 않은 변경사항을 확인하고, `git diff --staged`는 다음 commit에 들어갈 변경사항을 확인할 때 사용한다.
+* Git과 GitHub는 같은 것이 아니며, Git은 로컬 변경 이력 관리 도구이고 GitHub는 Git 저장소를 원격에서 보관·공유하는 서비스이다.
+* Commit message는 정해진 답을 쓰는 것이 아니라 실제 변경사항을 의미 있게 요약해서 작성해야 한다.
+* GitHub 기록의 목적은 commit 수를 늘리는 것이 아니라 학습·구현·실패·디버깅 과정을 추적 가능하게 만드는 것이다.
+
+### 막힌 것
+
+* 없음
+
+### 다음 시작점
+
+* Stage 0의 다음 단계인 운영체제 개발환경 점검부터 시작
+* Mac에 필요한 개발도구가 현재 어느 정도 설치되어 있는지 확인
+* QEMU, NASM, Make, x86/x86-64 Cross Compiler 환경 구성 방향 확인
