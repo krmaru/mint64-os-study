@@ -182,6 +182,50 @@ Git에 익숙해지면 필요한 단계만 자연스럽게 선택해서 사용�
 
 ---
 
+## GitHub에서 직접 수정한 뒤 로컬 push가 거절될 때
+
+GitHub 웹에서 `README.md` 등의 파일을 직접 수정하면 그 변경도 하나의 원격 commit으로 기록된다.
+
+이후 로컬에서 별도의 commit을 만든 뒤 바로 `git push`하면 다음과 같이 push가 거절될 수 있다.
+
+    ! [rejected] main -> main (fetch first)
+
+이는 GitHub에는 존재하지만 현재 로컬에는 없는 commit이 있기 때문이다.
+
+### 해결 순서
+
+    git fetch origin
+    git rebase origin/main
+    git push
+
+| 명령어 | 역할 |
+| --- | --- |
+| `git fetch origin` | GitHub의 최신 commit 정보를 가져온다. 현재 작업 파일은 바로 변경하지 않는다. |
+| `git rebase origin/main` | 내 로컬 commit을 최신 `origin/main` 뒤에 다시 이어 붙인다. |
+| `git push` | 정리된 로컬 commit을 GitHub에 업로드한다. |
+
+예를 들어 다음과 같이 로컬과 GitHub의 기록이 갈라졌다면,
+
+    GitHub : A → B → C
+    Local  : A → B → D
+
+`git fetch origin`과 `git rebase origin/main` 이후에는 다음과 같이 정리된다.
+
+    A → B → C → D'
+
+`D'`는 기존 `D`와 내용은 같지만, rebase 과정에서 위치가 바뀌면서 새로운 commit hash를 가지게 된다.
+
+### 미리 예방하기
+
+GitHub 웹이나 다른 컴퓨터에서 저장소를 수정한 적이 있다면 로컬 작업을 시작하기 전에 다음 명령으로 최신 상태를 먼저 반영할 수 있다.
+
+    git pull --rebase
+
+이 명령은 원격 변경사항을 먼저 반영한 뒤 로컬 commit을 그 뒤에 이어 붙이는 방식으로 동작한다.
+
+> 원격에 내가 모르는 변경사항이 있을 때는 무작정 `git push --force`를 사용하지 않는다.
+
+
 # 2. Git 명령어 정리
 
 모든 명령어를 외울 필요는 없다.
